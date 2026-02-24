@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exercise 3 - Filterable Card Grid</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
@@ -22,322 +19,105 @@
 
   <main>
     <section class="exercise-intro">
-      <h2>Advanced Filtering with Event Delegation</h2>
-      <p>This exercise demonstrates complex filtering and search functionality using event delegation patterns.</p>
+      <h2>Event Delegation with Filtering</h2>
+      <p>Filter cards by category using the buttons below.</p>
     </section>
 
     <section class="filter-section">
-      <div class="filter-header">
-        <h3>Product Catalog</h3>
-        <p>Filter and search through our product collection</p>
+      <div id="filter-bar" class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="tech">Technology</button>
+        <button class="filter-btn" data-filter="science">Science</button>
+        <button class="filter-btn" data-filter="art">Art</button>
+        <button class="filter-btn" data-filter="music">Music</button>
       </div>
 
-      <div class="filter-controls">
-        <div class="filter-group">
-          <h4>Categories</h4>
-          <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">
-              <span>All Products</span>
-              <span class="filter-count">12</span>
-            </button>
-            <button class="filter-btn" data-filter="tech">
-              <span>Technology</span>
-              <span class="filter-count">3</span>
-            </button>
-            <button class="filter-btn" data-filter="science">
-              <span>Science</span>
-              <span class="filter-count">3</span>
-            </button>
-            <button class="filter-btn" data-filter="art">
-              <span>Art</span>
-              <span class="filter-count">3</span>
-            </button>
-            <button class="filter-btn" data-filter="music">
-              <span>Music</span>
-              <span class="filter-count">3</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="search-group">
-          <h4>Search Products</h4>
-          <div class="search-container">
-            <input 
-              type="text" 
-              id="search-input" 
-              placeholder="Search by product name or description..."
-              aria-label="Search products"
-            >
-            <button id="clear-search-btn" class="btn btn-secondary" aria-label="Clear search">
-              <span>Clear</span>
-              <span>×</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="sort-group">
-          <h4>Sort By</h4>
-          <select id="sort-select" class="sort-select">
-            <option value="default">Default Order</option>
-            <option value="name-asc">Name A-Z</option>
-            <option value="name-desc">Name Z-A</option>
-            <option value="category">Category</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="stats-container">
-        <div class="stat-item">
-          <span class="stat-label">Total Products</span>
-          <span id="total-count" class="stat-value">12</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Visible</span>
-          <span id="visible-count" class="stat-value">12</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-label">Filtered</span>
-          <span id="filtered-count" class="stat-value">0</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="products-section">
       <div id="card-grid" class="card-grid">
-        <!-- Technology Products -->
-        <div class="card" data-category="tech" data-name="Laptop Pro" data-price="1299">
-          <div class="card-header">
-            <span class="card-category">Technology</span>
-            <span class="card-price">$1,299</span>
-          </div>
+        <!-- Technology Cards -->
+        <div class="card" data-category="tech">
           <h3>💻 Laptop Pro</h3>
-          <p>High-performance laptop for developers and creative professionals</p>
-          <div class="card-features">
-            <span class="feature-tag">16GB RAM</span>
-            <span class="feature-tag">512GB SSD</span>
-            <span class="feature-tag">4K Display</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>High-performance laptop for developers</p>
         </div>
 
-        <div class="card" data-category="tech" data-name="Smartphone X" data-price="899">
-          <div class="card-header">
-            <span class="card-category">Technology</span>
-            <span class="card-price">$899</span>
-          </div>
+        <div class="card" data-category="tech">
           <h3>📱 Smartphone X</h3>
-          <p>Latest smartphone with advanced AI features and premium camera</p>
-          <div class="card-features">
-            <span class="feature-tag">5G Ready</span>
-            <span class="feature-tag">Triple Camera</span>
-            <span class="feature-tag">128GB</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Latest smartphone with AI features</p>
         </div>
 
-        <div class="card" data-category="tech" data-name="Wireless Headphones" data-price="299">
-          <div class="card-header">
-            <span class="card-category">Technology</span>
-            <span class="card-price">$299</span>
-          </div>
+        <div class="card" data-category="tech">
           <h3>🎧 Wireless Headphones</h3>
-          <p>Premium noise-cancelling Bluetooth headphones with crystal clear audio</p>
-          <div class="card-features">
-            <span class="feature-tag">Noise Cancel</span>
-            <span class="feature-tag">30h Battery</span>
-            <span class="feature-tag">Wireless</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Noise-cancelling Bluetooth headphones</p>
         </div>
 
-        <!-- Science Products -->
-        <div class="card" data-category="science" data-name="Microscope Kit" data-price="499">
-          <div class="card-header">
-            <span class="card-category">Science</span>
-            <span class="card-price">$499</span>
-          </div>
+        <!-- Science Cards -->
+        <div class="card" data-category="science">
           <h3>🔬 Microscope Kit</h3>
-          <p>Professional grade laboratory microscope with digital imaging</p>
-          <div class="card-features">
-            <span class="feature-tag">1000x Zoom</span>
-            <span class="feature-tag">Digital Camera</span>
-            <span class="feature-tag">LED Light</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Professional grade laboratory microscope</p>
         </div>
 
-        <div class="card" data-category="science" data-name="Chemistry Set" data-price="129">
-          <div class="card-header">
-            <span class="card-category">Science</span>
-            <span class="card-price">$129</span>
-          </div>
+        <div class="card" data-category="science">
           <h3>🧪 Chemistry Set</h3>
-          <p>Complete chemistry set with safe experiments for young scientists</p>
-          <div class="card-features">
-            <span class="feature-tag">50+ Experiments</span>
-            <span class="feature-tag">Safety Gear</span>
-            <span class="feature-tag">Ages 10+</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Safe experiments for young scientists</p>
         </div>
 
-        <div class="card" data-category="science" data-name="Weather Station" data-price="199">
-          <div class="card-header">
-            <span class="card-category">Science</span>
-            <span class="card-price">$199</span>
-          </div>
+        <div class="card" data-category="science">
           <h3>🌡️ Weather Station</h3>
-          <p>Wireless weather station that tracks temperature, humidity, and pressure</p>
-          <div class="card-features">
-            <span class="feature-tag">Wireless</span>
-            <span class="feature-tag">Mobile App</span>
-            <span class="feature-tag">Forecasts</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Track temperature, humidity, and pressure</p>
         </div>
 
-        <!-- Art Products -->
-        <div class="card" data-category="art" data-name="Paint Set" data-price="89">
-          <div class="card-header">
-            <span class="card-category">Art</span>
-            <span class="card-price">$89</span>
-          </div>
+        <!-- Art Cards -->
+        <div class="card" data-category="art">
           <h3>🎨 Paint Set</h3>
-          <p>24-color professional acrylic paint set with brushes and palette</p>
-          <div class="card-features">
-            <span class="feature-tag">24 Colors</span>
-            <span class="feature-tag">Brushes</span>
-            <span class="feature-tag">Palette</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>24-color professional acrylic paints</p>
         </div>
 
-        <div class="card" data-category="art" data-name="Sketchbook" data-price="25">
-          <div class="card-header">
-            <span class="card-category">Art</span>
-            <span class="card-price">$25</span>
-          </div>
+        <div class="card" data-category="art">
           <h3>✏️ Sketchbook</h3>
-          <p>Premium quality drawing paper sketchbook for artists and designers</p>
-          <div class="card-features">
-            <span class="feature-tag">100 Pages</span>
-            <span class="feature-tag">Hard Cover</span>
-            <span class="feature-tag">A4 Size</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Premium quality drawing paper</p>
         </div>
 
-        <div class="card" data-category="art" data-name="Brush Collection" data-price="45">
-          <div class="card-header">
-            <span class="card-category">Art</span>
-            <span class="card-price">$45</span>
-          </div>
+        <div class="card" data-category="art">
           <h3>🖌️ Brush Collection</h3>
-          <p>Set of 10 professional paint brushes for various techniques</p>
-          <div class="card-features">
-            <span class="feature-tag">10 Brushes</span>
-            <span class="feature-tag">Various Sizes</span>
-            <span class="feature-tag">Natural Hair</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Set of 10 professional paint brushes</p>
         </div>
 
-        <!-- Music Products -->
-        <div class="card" data-category="music" data-name="Acoustic Guitar" data-price="299">
-          <div class="card-header">
-            <span class="card-category">Music</span>
-            <span class="card-price">$299</span>
-          </div>
+        <!-- Music Cards -->
+        <div class="card" data-category="music">
           <h3>🎸 Acoustic Guitar</h3>
-          <p>Beginner-friendly classical guitar with rich sound and easy playability</p>
-          <div class="card-features">
-            <span class="feature-tag">Full Size</span>
-            <span class="feature-tag">Case Included</span>
-            <span class="feature-tag">Tuner</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Beginner-friendly classical guitar</p>
         </div>
 
-        <div class="card" data-category="music" data-name="Digital Piano" data-price="599">
-          <div class="card-header">
-            <span class="card-category">Music</span>
-            <span class="card-price">$599</span>
-          </div>
+        <div class="card" data-category="music">
           <h3>🎹 Digital Piano</h3>
-          <p>88-key weighted keyboard with authentic piano sound and built-in speakers</p>
-          <div class="card-features">
-            <span class="feature-tag">88 Keys</span>
-            <span class="feature-tag">Weighted</span>
-            <span class="feature-tag">Speakers</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>88-key weighted keyboard</p>
         </div>
 
-        <div class="card" data-category="music" data-name="Drum Pad" data-price="149">
-          <div class="card-header">
-            <span class="card-category">Music</span>
-            <span class="card-price">$149</span>
-          </div>
+        <div class="card" data-category="music">
           <h3>🥁 Drum Pad</h3>
-          <p>Electronic drum practice pad with multiple sounds and metronome</p>
-          <div class="card-features">
-            <span class="feature-tag">9 Sounds</span>
-            <span class="feature-tag">Metronome</span>
-            <span class="feature-tag">Portable</span>
-          </div>
-          <button class="card-action-btn">Add to Cart</button>
+          <p>Electronic drum practice pad</p>
         </div>
-      </div>
-    </section>
-
-    <section class="no-results" id="no-results" style="display: none;">
-      <div class="no-results-content">
-        <h3>🔍 No products found</h3>
-        <p>Try adjusting your filters or search terms</p>
-        <button id="reset-filters-btn" class="btn btn-primary">Reset All Filters</button>
       </div>
     </section>
 
     <section class="instructions">
-      <h3>Filtering Features</h3>
+      <h3>Instructions</h3>
       <div class="instruction-cards">
         <div class="instruction-card">
-          <h4>🎯 Filtering</h4>
+          <h4>Filtering</h4>
           <ul>
             <li>Click category buttons to filter</li>
-            <li>Multiple filters can be combined</li>
-            <li>Real-time results updating</li>
-            <li>Visual feedback for active filters</li>
+            <li>Active filter is highlighted</li>
+            <li>Uses event delegation</li>
           </ul>
         </div>
 
         <div class="instruction-card">
-          <h4>🔍 Search</h4>
+          <h4>Categories</h4>
           <ul>
-            <li>Search by product name</li>
-            <li>Search by description text</li>
-            <li>Real-time search results</li>
-            <li>Clear search functionality</li>
-          </ul>
-        </div>
-
-        <div class="instruction-card">
-          <h4>📊 Sorting</h4>
-          <ul>
-            <li>Sort by name A-Z/Z-A</li>
-            <li>Sort by category</li>
-            <li>Sort by price (coming soon)</li>
-            <li>Preserve filter state</li>
-          </ul>
-        </div>
-
-        <div class="instruction-card">
-          <h4>⚡ Performance</h4>
-          <ul>
-            <li>Event delegation for efficiency</li>
-            <li>Smooth animations</li>
-            <li>Responsive design</li>
-            <li>Accessibility compliant</li>
+            <li>Technology (3 items)</li>
+            <li>Science (3 items)</li>
+            <li>Art (3 items)</li>
+            <li>Music (3 items)</li>
           </ul>
         </div>
       </div>
@@ -345,277 +125,5 @@
   </main>
 
   <script src="exercise3.js"></script>
-
-  <style>
-    .filter-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .filter-header h3 {
-      color: var(--primary-color);
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .filter-header p {
-      color: var(--text-secondary);
-    }
-
-    .filter-controls {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .filter-group,
-    .search-group,
-    .sort-group {
-      background: white;
-      padding: 1.5rem;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow);
-    }
-
-    .filter-group h4,
-    .search-group h4,
-    .sort-group h4 {
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .filter-bar {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .filter-btn {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1rem;
-      border: 2px solid var(--border-color);
-      background: white;
-      color: var(--text-primary);
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-weight: 500;
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      border-color: var(--primary-color);
-      background: var(--primary-color);
-      color: white;
-    }
-
-    .filter-count {
-      background: var(--surface-color);
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-    }
-
-    .filter-btn.active .filter-count,
-    .filter-btn:hover .filter-count {
-      background: rgba(255, 255, 255, 0.2);
-      color: white;
-    }
-
-    .search-container {
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    #search-input {
-      flex: 1;
-      padding: 0.75rem 1rem;
-      border: 2px solid var(--border-color);
-      border-radius: var(--radius-md);
-      font-size: 1rem;
-    }
-
-    #search-input:focus {
-      border-color: var(--primary-color);
-      outline: none;
-    }
-
-    .sort-select {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 2px solid var(--border-color);
-      border-radius: var(--radius-md);
-      font-size: 1rem;
-      background: white;
-    }
-
-    .sort-select:focus {
-      border-color: var(--primary-color);
-      outline: none;
-    }
-
-    .products-section {
-      margin: 3rem 0;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      border: 1px solid var(--border-color);
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--primary-color);
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    .card-category {
-      background: var(--surface-color);
-      padding: 0.25rem 0.75rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    .card-price {
-      font-weight: 700;
-      color: var(--primary-color);
-      font-size: 1.125rem;
-    }
-
-    .card h3 {
-      margin: 0 0 1rem 0;
-      color: var(--text-primary);
-      font-size: 1.25rem;
-    }
-
-    .card p {
-      margin: 0 0 1rem 0;
-      color: var(--text-secondary);
-      line-height: 1.5;
-    }
-
-    .card-features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-tag {
-      background: var(--surface-color);
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-    }
-
-    .card-action-btn {
-      width: 100%;
-      padding: 0.75rem;
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      font-weight: 600;
-      transition: background 0.2s ease;
-    }
-
-    .card-action-btn:hover {
-      background: var(--primary-hover);
-    }
-
-    .no-results {
-      text-align: center;
-      padding: 3rem;
-      background: var(--surface-color);
-      border-radius: var(--radius-lg);
-      margin: 2rem 0;
-    }
-
-    .no-results-content h3 {
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-    }
-
-    @media (max-width: 1024px) {
-      .filter-controls {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .card-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      }
-    }
-
-    @media (max-width: 768px) {
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-bar {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .filter-btn {
-        flex: 1;
-        min-width: 120px;
-      }
-
-      .search-container {
-        flex-direction: column;
-      }
-
-      #clear-search-btn {
-        align-self: flex-end;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .filter-controls {
-        gap: 1rem;
-      }
-
-      .filter-group,
-      .search-group,
-      .sort-group {
-        padding: 1rem;
-      }
-
-      .card {
-        padding: 1rem;
-      }
-
-      .card-features {
-        gap: 0.25rem;
-      }
-    }
-  </style>
 </body>
 </html>
