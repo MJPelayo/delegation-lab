@@ -2,29 +2,317 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Exercise 1 - Accordion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 1 - Accordion Menu</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <header>
+    <h1>Exercise 1 - Accordion Menu</h1>
+    <p class="back-link-container">
+      <a href="index.html" class="back-link">
+        <span>←</span>
+        Back to Lab 4
+      </a>
+    </p>
+  </header>
 
-<h2>Exercise 1 - Accordion Menu</h2>
+  <main>
+    <section class="exercise-intro">
+      <h2>Event Delegation with Accordions</h2>
+      <p>This exercise demonstrates event delegation by using a single event listener on the parent element to handle all accordion interactions.</p>
+    </section>
 
-<ul class="accordion">
-  <li class="accordion-item">
-    <button class="accordion-trigger">What is event delegation?</button>
-    <div class="accordion-panel">
-      <p>Delegation attaches one listener to a parent element.</p>
-    </div>
-  </li>
+    <section class="accordion-container">
+      <div class="accordion-header">
+        <h3>Frequently Asked Questions</h3>
+        <p>Click on any question to expand the answer</p>
+      </div>
 
-  <li class="accordion-item">
-    <button class="accordion-trigger">Why use closest()?</button>
-    <div class="accordion-panel">
-      <p>closest() safely traverses up the DOM tree.</p>
-    </div>
-  </li>
-</ul>
+      <ul class="accordion" id="accordion">
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="trigger-text">What is event delegation?</span>
+            <span class="trigger-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="accordion-panel" aria-hidden="true">
+            <div class="panel-content">
+              <p>Event delegation is a technique where you attach a single event listener to a parent element instead of multiple listeners to individual child elements. This improves performance and handles dynamically added content.</p>
+              <ul>
+                <li>Reduces memory usage</li>
+                <li>Handles dynamic content</li>
+                <li>Simplifies event management</li>
+              </ul>
+            </div>
+          </div>
+        </li>
 
-<script src="exercise1.js"></script>
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="trigger-text">Why use closest() method?</span>
+            <span class="trigger-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="accordion-panel" aria-hidden="true">
+            <div class="panel-content">
+              <p>The <code>closest()</code> method safely traverses up the DOM tree to find the nearest ancestor that matches a selector. It's essential for event delegation patterns.</p>
+              <p><strong>Benefits:</strong></p>
+              <ul>
+                <li>Prevents event target confusion</li>
+                <li>Works with nested elements</li>
+                <li>Returns null if no match found</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="trigger-text">When should I use event delegation?</span>
+            <span class="trigger-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="accordion-panel" aria-hidden="true">
+            <div class="panel-content">
+              <p>Event delegation is ideal for:</p>
+              <ul>
+                <li>Lists with many items</li>
+                <li>Dynamically generated content</li>
+                <li>Performance-critical applications</li>
+                <li>When you want to reduce event listeners</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="trigger-text">What are the performance benefits?</span>
+            <span class="trigger-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="accordion-panel" aria-hidden="true">
+            <div class="panel-content">
+              <p>Event delegation provides significant performance improvements:</p>
+              <ul>
+                <li><strong>Memory efficiency:</strong> Single listener vs many</li>
+                <li><strong>Faster initialization:</strong> No need to attach listeners to each element</li>
+                <li><strong>Better scalability:</strong> Handles large numbers of elements</li>
+                <li><strong>Easier maintenance:</strong> Centralized event handling</li>
+              </ul>
+            </div>
+          </div>
+        </li>
+
+        <li class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false">
+            <span class="trigger-text">How does it work with dynamic content?</span>
+            <span class="trigger-icon" aria-hidden="true">▼</span>
+          </button>
+          <div class="accordion-panel" aria-hidden="true">
+            <div class="panel-content">
+              <p>Event delegation naturally handles dynamic content because the listener is on the parent element. New child elements automatically inherit the event handling without needing additional setup.</p>
+              <p><strong>Example:</strong> Adding new items to a list doesn't require attaching new event listeners.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section class="instructions">
+      <h3>Instructions</h3>
+      <div class="instruction-cards">
+        <div class="instruction-card">
+          <h4>🎯 How to Use</h4>
+          <ul>
+            <li>Click any question to expand/collapse</li>
+            <li>Only one panel can be open at a time</li>
+            <li>Keyboard navigation supported</li>
+            <li>Fully accessible with ARIA attributes</li>
+          </ul>
+        </div>
+
+        <div class="instruction-card">
+          <h4>⌨️ Keyboard Controls</h4>
+          <ul>
+            <li><kbd>Enter</kbd> or <kbd>Space</kbd> to toggle</li>
+            <li><kbd>↑</kbd> <kbd>↓</kbd> to navigate between items</li>
+            <li><kbd>Home</kbd> <kbd>End</kbd> for first/last item</li>
+            <li><kbd>Escape</kbd> to collapse all</li>
+          </ul>
+        </div>
+
+        <div class="instruction-card">
+          <h4>🔧 Technical Details</h4>
+          <ul>
+            <li>Single event listener on parent</li>
+            <li>Uses <code>closest()</code> for target detection</li>
+            <li>CSS transitions for smooth animation</li>
+            <li>ARIA attributes for accessibility</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="exercise1.js"></script>
+
+  <style>
+    .exercise-intro {
+      background: var(--surface-color);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .exercise-intro h2 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .accordion-container {
+      margin: 3rem 0;
+    }
+
+    .accordion-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .accordion-header h3 {
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .accordion-header p {
+      color: var(--text-secondary);
+    }
+
+    .trigger-text {
+      flex: 1;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .trigger-icon {
+      transition: transform 0.3s ease;
+      font-size: 0.875rem;
+    }
+
+    .accordion-item.open .trigger-icon {
+      transform: rotate(180deg);
+    }
+
+    .panel-content {
+      padding: 1rem 0;
+    }
+
+    .panel-content p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    .panel-content ul {
+      list-style: disc;
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .panel-content li {
+      margin: 0.5rem 0;
+      color: var(--text-secondary);
+    }
+
+    .panel-content code {
+      background: var(--surface-color);
+      padding: 0.2rem 0.4rem;
+      border-radius: var(--radius-sm);
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      color: var(--primary-color);
+    }
+
+    .panel-content strong {
+      color: var(--text-primary);
+    }
+
+    .instructions {
+      background: var(--surface-color);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin: 3rem 0;
+    }
+
+    .instructions h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+
+    .instruction-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .instruction-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+    }
+
+    .instruction-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .instruction-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .instruction-card li {
+      margin: 0.75rem 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .instruction-card kbd {
+      background: var(--surface-color);
+      padding: 0.2rem 0.4rem;
+      border-radius: var(--radius-sm);
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .back-link-container {
+      margin: 1.5rem 0;
+    }
+
+    @media (max-width: 768px) {
+      .exercise-intro,
+      .instructions {
+        padding: 1.5rem;
+      }
+
+      .instruction-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .accordion-trigger {
+        padding: 1rem;
+      }
+
+      .panel-content {
+        padding: 0.5rem 0;
+      }
+    }
+  </style>
 </body>
 </html>

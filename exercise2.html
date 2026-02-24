@@ -4,43 +4,403 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exercise 2 - Live Tag Builder</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <h1>Exercise 2 - Live Tag Builder</h1>
-  <p><a href="index.html">← Back to Lab 4</a></p>
-  
-  <hr>
+  <header>
+    <h1>Exercise 2 - Live Tag Builder</h1>
+    <p class="back-link-container">
+      <a href="index.html" class="back-link">
+        <span>←</span>
+        Back to Lab 4
+      </a>
+    </p>
+  </header>
 
-  <h2>Tag Builder</h2>
-  
-  <div>
-    <label for="tag-input">Enter a tag:</label>
-    <input type="text" id="tag-input" placeholder="Type and press Enter">
-    <button id="add-tag-btn">Add Tag</button>
-    <button id="clear-all-btn">Clear All</button>
-  </div>
+  <main>
+    <section class="exercise-intro">
+      <h2>Dynamic Tag Management</h2>
+      <p>This exercise demonstrates event delegation for managing dynamic tags with add, remove, and edit functionality.</p>
+    </section>
 
-  <hr>
+    <section class="tag-builder-container">
+      <div class="tag-builder-header">
+        <h3>Tag Builder</h3>
+        <p>Create and manage your tags efficiently</p>
+      </div>
 
-  <div>
-    <h3>Your Tags:</h3>
-    <p>Tag count: <span id="tag-counter">0</span></p>
-    <div id="tag-container"></div>
-  </div>
+      <div class="tag-input-group">
+        <label for="tag-input">Enter a tag:</label>
+        <input 
+          type="text" 
+          id="tag-input" 
+          placeholder="Type tag name and press Enter"
+          maxlength="20"
+          aria-describedby="tag-input-help"
+        >
+        <button id="add-tag-btn" class="btn btn-primary">
+          <span>Add Tag</span>
+          <span>+</span>
+        </button>
+        <button id="clear-all-btn" class="btn btn-danger">
+          <span>Clear All</span>
+          <span>×</span>
+        </button>
+      </div>
 
-  <hr>
+      <div id="tag-input-help" class="input-help">
+        <p>💡 Press Enter to add tags quickly. Maximum 10 tags allowed.</p>
+      </div>
 
-  <div>
-    <h3>Instructions:</h3>
-    <ul>
-      <li>Type a tag name and press Enter to add it</li>
-      <li>Click the × on any tag to remove it</li>
-      <li>Double-click any tag to edit it</li>
-      <li>Try adding duplicate tags to see validation</li>
-      <li>Maximum 10 tags allowed</li>
-    </ul>
-  </div>
+      <div class="tag-stats">
+        <div class="stat-item">
+          <span class="stat-label">Total Tags</span>
+          <span id="tag-counter" class="stat-value">0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Max Limit</span>
+          <span class="stat-value">10</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Available</span>
+          <span id="available-counter" class="stat-value">10</span>
+        </div>
+      </div>
+
+      <div class="tag-display">
+        <h4>Your Tags:</h4>
+        <div id="tag-container" class="tag-container" aria-live="polite">
+          <p class="empty-state" id="empty-state">No tags yet. Add your first tag above!</p>
+        </div>
+      </div>
+
+      <div class="tag-actions">
+        <button id="sort-alpha-btn" class="btn btn-secondary">
+          <span>Sort A-Z</span>
+          <span>🔤</span>
+        </button>
+        <button id="reverse-btn" class="btn btn-secondary">
+          <span>Reverse Order</span>
+          <span>🔄</span>
+        </button>
+        <button id="export-btn" class="btn btn-secondary">
+          <span>Export Tags</span>
+          <span>📋</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="instructions">
+      <h3>How to Use the Tag Builder</h3>
+      <div class="instruction-cards">
+        <div class="instruction-card">
+          <h4>🏷️ Adding Tags</h4>
+          <ul>
+            <li>Type in the input field</li>
+            <li>Press <kbd>Enter</kbd> or click "Add Tag"</li>
+            <li>Maximum 10 tags allowed</li>
+            <li>Duplicate tags are prevented</li>
+          </ul>
+        </div>
+
+        <div class="instruction-card">
+          <h4>✏️ Editing Tags</h4>
+          <ul>
+            <li>Double-click any tag to edit</li>
+            <li>Press <kbd>Enter</kbd> to save changes</li>
+            <li>Press <kbd>Escape</kbd> to cancel</li>
+            <li>Click outside to save changes</li>
+          </ul>
+        </div>
+
+        <div class="instruction-card">
+          <h4>🗑️ Removing Tags</h4>
+          <ul>
+            <li>Click the × icon on any tag</li>
+            <li>Use "Clear All" to remove all tags</li>
+            <li>Confirmation for bulk actions</li>
+            <li>Undo support available</li>
+          </ul>
+        </div>
+
+        <div class="instruction-card">
+          <h4>⚙️ Advanced Features</h4>
+          <ul>
+            <li>Sort tags alphabetically</li>
+            <li>Reverse tag order</li>
+            <li>Export tags to clipboard</li>
+            <li>Real-time tag counting</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <h3>Technical Features</h3>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-icon">🎯</div>
+          <h4>Event Delegation</h4>
+          <p>Single event listener handles all tag interactions</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <h4>Performance</h4>
+          <p>Efficient DOM manipulation with event delegation</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">♿</div>
+          <h4>Accessibility</h4>
+          <p>Full keyboard navigation and ARIA support</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-icon">📱</div>
+          <h4>Responsive</h4>
+          <p>Works perfectly on all device sizes</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="exercise2.js"></script>
+
+  <style>
+    .tag-builder-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .tag-builder-header h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-builder-header p {
+      color: var(--text-secondary);
+    }
+
+    .tag-input-group {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .tag-input-group label {
+      font-weight: 600;
+      color: var(--text-primary);
+      min-width: 100px;
+    }
+
+    #tag-input {
+      flex: 1;
+      min-width: 250px;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    #tag-input:focus {
+      border-color: var(--primary-color);
+      outline: none;
+    }
+
+    .input-help {
+      margin-bottom: 1.5rem;
+      padding: 0.75rem;
+      background: var(--surface-color);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .input-help p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .tag-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background: var(--surface-color);
+      border-radius: var(--radius-md);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0.75rem;
+      background: white;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .tag-display {
+      margin: 2rem 0;
+    }
+
+    .tag-display h4 {
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+
+    .tag-container {
+      min-height: 100px;
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      background: white;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-secondary);
+      font-style: italic;
+      margin: 2rem 0;
+    }
+
+    .tag-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+
+    .btn-secondary {
+      background: var(--secondary-color);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .features {
+      background: var(--surface-color);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      margin: 3rem 0;
+    }
+
+    .features h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: white;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-item h4 {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .feature-item p {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .tag-input-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .tag-input-group label {
+        min-width: unset;
+        margin-bottom: 0.5rem;
+      }
+
+      #tag-input {
+        min-width: unset;
+        width: 100%;
+      }
+
+      .tag-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .tag-actions {
+        justify-content: center;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .instruction-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tag-builder-container {
+        padding: 1rem;
+      }
+
+      .features {
+        padding: 1.5rem;
+      }
+
+      .tag-container {
+        padding: 1rem;
+      }
+    }
+  </style>
 </body>
 </html>
