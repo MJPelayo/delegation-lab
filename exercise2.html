@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 2 - Live Tag Builder</title>
+</head>
+<body>
+  <h1>Exercise 2 - Live Tag Builder</h1>
+  <p><a href="index.html">← Back to Lab 4</a></p>
+  
+  <hr>
+
+  <h2>Tag Builder</h2>
+  
+  <div>
+    <label for="tag-input">Enter a tag:</label>
+    <input type="text" id="tag-input" placeholder="Type and press Enter">
+    <button id="add-tag-btn">Add Tag</button>
+    <button id="clear-all-btn">Clear All</button>
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>Your Tags:</h3>
+    <p>Tag count: <span id="tag-counter">0</span></p>
+    <div id="tag-container"></div>
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>Instructions:</h3>
+    <ul>
+      <li>Type a tag name and press Enter to add it</li>
+      <li>Click the × on any tag to remove it</li>
+      <li>Double-click any tag to edit it</li>
+      <li>Try adding duplicate tags to see validation</li>
+      <li>Maximum 10 tags allowed</li>
+    </ul>
+  </div>
+
+  <script src="exercise2.js"></script>
+</body>
+</html>
