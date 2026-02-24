@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 3 - Filterable Card Grid</title>
+</head>
+<body>
+  <h1>Exercise 3 - Filterable Card Grid</h1>
+  <p><a href="index.html">← Back to Lab 4</a></p>
+  
+  <hr>
+
+  <h2>Filterable Card Grid</h2>
+  
+  <!-- Filter Bar -->
+  <div id="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="tech">Technology</button>
+    <button class="filter-btn" data-filter="science">Science</button>
+    <button class="filter-btn" data-filter="art">Art</button>
+    <button class="filter-btn" data-filter="music">Music</button>
+  </div>
+
+  <hr>
+
+  <!-- Card Grid -->
+  <div id="card-grid">
+    <!-- Tech Cards -->
+    <div class="card" data-category="tech">
+      <h3>💻 Laptop Pro</h3>
+      <p>High-performance laptop for developers</p>
+      <small>Category: Technology</small>
+    </div>
+
+    <div class="card" data-category="tech">
+      <h3>📱 Smartphone X</h3>
+      <p>Latest smartphone with AI features</p>
+      <small>Category: Technology</small>
+    </div>
+
+    <div class="card" data-category="tech">
+      <h3>🎧 Wireless Headphones</h3>
+      <p>Noise-cancelling Bluetooth headphones</p>
+      <small>Category: Technology</small>
+    </div>
+
+    <!-- Science Cards -->
+    <div class="card" data-category="science">
+      <h3>🔬 Microscope Kit</h3>
+      <p>Professional grade laboratory microscope</p>
+      <small>Category: Science</small>
+    </div>
+
+    <div class="card" data-category="science">
+      <h3>🧪 Chemistry Set</h3>
+      <p>Safe experiments for young scientists</p>
+      <small>Category: Science</small>
+    </div>
+
+    <div class="card" data-category="science">
+      <h3>🌡️ Weather Station</h3>
+      <p>Track temperature, humidity, and pressure</p>
+      <small>Category: Science</small>
+    </div>
+
+    <!-- Art Cards -->
+    <div class="card" data-category="art">
+      <h3>🎨 Paint Set</h3>
+      <p>24-color professional acrylic paints</p>
+      <small>Category: Art</small>
+    </div>
+
+    <div class="card" data-category="art">
+      <h3>✏️ Sketchbook</h3>
+      <p>Premium quality drawing paper</p>
+      <small>Category: Art</small>
+    </div>
+
+    <div class="card" data-category="art">
+      <h3>🖌️ Brush Collection</h3>
+      <p>Set of 10 professional paint brushes</p>
+      <small>Category: Art</small>
+    </div>
+
+    <!-- Music Cards -->
+    <div class="card" data-category="music">
+      <h3>🎸 Acoustic Guitar</h3>
+      <p>Beginner-friendly classical guitar</p>
+      <small>Category: Music</small>
+    </div>
+
+    <div class="card" data-category="music">
+      <h3>🎹 Digital Piano</h3>
+      <p>88-key weighted keyboard</p>
+      <small>Category: Music</small>
+    </div>
+
+    <div class="card" data-category="music">
+      <h3>🥁 Drum Pad</h3>
+      <p>Electronic drum practice pad</p>
+      <small>Category: Music</small>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Stats -->
+  <div id="stats">
+    <p>Total Cards: <span id="total-count">12</span> | 
+    Visible: <span id="visible-count">12</span></p>
+  </div>
+
+  <!-- Search/Filter Input -->
+  <div>
+    <h3>Search:</h3>
+    <input type="text" id="search-input" placeholder="Filter cards by text...">
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>Instructions:</h3>
+    <ul>
+      <li>Click category buttons to filter cards</li>
+      <li>Active filter is highlighted</li>
+      <li>Use search box to filter by card content</li>
+      <li>Filters combine (category + search)</li>
+      <li>Watch the visible count update</li>
+    </ul>
+  </div>
+
+  <script src="exercise3.js"></script>
+</body>
+</html>
