@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exercise 4 - Inline Edit List</title>
+</head>
+<body>
+  <h1>Exercise 4 - Inline Edit List</h1>
+  <p><a href="index.html">← Back to Lab 4</a></p>
+  
+  <hr>
+
+  <h2>Inline Edit List</h2>
+  <p>Double-click any item to edit it</p>
+
+  <!-- Add New Item Section -->
+  <div>
+    <h3>Add New Item:</h3>
+    <input type="text" id="new-item-input" placeholder="Enter item name">
+    <button id="add-item-btn">Add Item</button>
+  </div>
+
+  <hr>
+
+  <!-- Editable List -->
+  <h3>My Shopping List:</h3>
+  <ul id="edit-list">
+    <li class="edit-item">Milk</li>
+    <li class="edit-item">Bread</li>
+    <li class="edit-item">Eggs</li>
+    <li class="edit-item">Butter</li>
+    <li class="edit-item">Coffee</li>
+  </ul>
+
+  <!-- Item Count -->
+  <p>Total items: <span id="item-count">5</span></p>
+
+  <!-- Bulk Actions -->
+  <div>
+    <button id="clear-completed-btn">Clear Completed</button>
+    <button id="reset-list-btn">Reset to Default</button>
+  </div>
+
+  <hr>
+
+  <div>
+    <h3>Instructions:</h3>
+    <ul>
+      <li><strong>Double-click</strong> any item to edit it</li>
+      <li><strong>Enter</strong> saves your changes</li>
+      <li><strong>Escape</strong> cancels editing</li>
+      <li><strong>Click outside</strong> also saves changes</li>
+      <li>Add new items using the input above</li>
+    </ul>
+  </div>
+
+  <script src="exercise4.js"></script>
+</body>
+</html>
